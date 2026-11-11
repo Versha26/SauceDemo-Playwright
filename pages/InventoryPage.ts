@@ -10,7 +10,7 @@ export class InventoryPage {
     constructor(page: Page) {
         this.page = page;
         this.title = page.locator('[data-test="title"]');
-        this.items = page.locator('[data-test="inventory-iem"]');
+        this.items = page.locator('[data-test="inventory-item"]');
         this.cartBadge = page.locator('[data-test="shopping-cart-badge"]');
         this.sortDropdown = page.locator('[data-test="product-sort-container"]');
     }
