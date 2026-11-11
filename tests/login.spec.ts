@@ -43,5 +43,17 @@ test.describe('Login', () => {
     test('LOG-007: Login with both fields empty', async({}) => {
         await loginPage.login(invalidUsers.bothEmpty.username, invalidUsers.bothEmpty.password);
         await expect(loginPage.errorMessage).toContainText('Username is required');
+    });
+
+    test('LOG-008: Login Error message can be dismissed', async({}) => {
+        await loginPage.login(invalidUsers.bothEmpty.username, invalidUsers.bothEmpty.password);
+        await expect(loginPage.errorMessage).toBeVisible();
+        await loginPage.errorDismiss.click();
+        await expect(loginPage.errorMessage).toBeHidden();
+    });
+
+    test('LOG-009: Direct access to inventory without login', async({page}) => {
+        await page.goto('/inventory.html');
+        await expect(loginPage.errorMessage).toContainText('when you are logged in.');
     })
 })
